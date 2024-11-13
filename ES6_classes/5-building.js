@@ -1,32 +1,23 @@
-/**
- * Class representing a building.
- */
 export default class Building {
-  /**
-   * Creates an instance of Building.
-   *
-   * @param {number} sqft - The square footage of the building.
-   */
   constructor(sqft) {
+    if (typeof sqft !== 'number') {
+      throw new TypeError('sqft must be a number');
+    }
     this._sqft = sqft;
+
+    if (
+      this.constructor !== Building
+      && this.evacuationWarningMessage === Building.prototype.evacuationWarningMessage
+    ) {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
+    }
   }
 
-  /**
-   * Gets the square footage of the building.
-   *
-   * @returns {number} The square footage.
-   */
   get sqft() {
     return this._sqft;
   }
 
-  /**
-   * Abstract method to display evacuation warning message.
-   * Must be overridden by subclasses.
-   *
-   * @throws {Error} Throws an error if not implemented in subclass.
-   */
-  evacuationWarningMessage() {
+  static evacuationWarningMessage() {
     throw new Error('Class extending Building must override evacuationWarningMessage');
   }
 }
