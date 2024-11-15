@@ -1,9 +1,9 @@
-import listOfStudents from "./9-hoisting.js";
+import list from './9-hoisting';
 
-console.log(listOfStudents);
+console.log(list);
 
-const listPrinted = listOfStudents.map(
-    student => student.fullStudentDescription
-);
+const listPrinted = list.map((student) => (
+  student.fullStudentDescription
+));
 
-console.log(listPrinted)
+console.log(listPrinted);
