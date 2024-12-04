@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
+"""
+Module for creating and managing async tasks.
+"""
 import asyncio
-import importlib
+from typing import List
 
-# Importation dynamique du module 3-tasks
-tasks_module = importlib.import_module('3-tasks')
+task_wait_random = __import__('3-tasks').task_wait_random
 
-# Accès à la fonction task_wait_random depuis le module importé
-task_wait_random = tasks_module.task_wait_random
 
-async def task_wait_n(n: int, max_delay: int):
+async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """
-    Crée et attend n tâches asyncio, chacune exécutant la fonction task_wait_random avec max_delay.
+    Spawn task_wait_random n times and return list of delays.
 
-    Arguments :
-        n (int) : Le nombre de tâches à exécuter.
-        max_delay (int) : Le délai maximal pour wait_random.
+    Args:
+        n (int): Number of times to spawn task_wait_random
+        max_delay (int): Maximum delay for each task
 
-    Retour :
-        list : Une liste contenant les délais obtenus, triés dans l'ordre d'exécution.
+    Returns:
+        List[float]: List of delays in ascending order
     """
-    tasks = [task_wait_random(max_delay) for _ in range(n)]  # Créer n tâches
-    delays = await asyncio.gather(*tasks)  # Attendre que toutes les tâches se terminent
-    return delays  # Retourner la liste des délais obtenus
+    tasks = [task_wait_random(max_delay) for _ in range(n)]
+    delays = await asyncio.gather(*tasks)
+    return sorted(delays)
