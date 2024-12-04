@@ -1,30 +1,35 @@
-#!/usr/bin/env python3
 import asyncio
-import importlib
-
-# Importation dynamique du module 0-basic_async_syntax
-basic_async_syntax = importlib.import_module('0-basic_async_syntax')
-
-# Utilisation de la fonction wait_random depuis le module importé
-wait_random = basic_async_syntax.wait_random
+import random
 
 
-async def wait_n(n: int, max_delay: int) -> list:
+async def wait_random(max_delay: int = 10) -> float:
     """
-    Lance n fois la fonction wait_random avec un délai max_delay et retourne
-    les délais sous forme de liste triée de manière ascendante.
+    Asynchronous coroutine that waits for a random delay and returns it.
 
-    Arguments :
-        n (int) : Le nombre de fois où la fonction wait_random doit
-        être appelée.
-        max_delay (int) : Le délai maximum à passer à wait_random.
+    Args:
+        max_delay (int): Maximum possible delay in seconds. Defaults to 10.
 
-    Retour :
-        list : Liste des délais sous forme de flottants, triée de
-        manière ascendante.
+    Returns:
+        float: Random delay between 0 and max_delay
     """
-    tasks = [wait_random(max_delay) for _ in range(n)]  # Crée une liste de
-    # tâches wait_random
-    delays = await asyncio.gather(*tasks)  # Exécute toutes les tâches
-    # en parallèle
-    return delays  # La liste des délais est renvoyée telle quelle
+    delay = random.uniform(0, max_delay)
+    await asyncio.sleep(delay)
+    return delay
+
+
+async def wait_n(n: int, max_delay: int) -> list[float]:
+    """
+    Spawn wait_random n times and return the list of delays in ascending order.
+
+    Args:
+        n (int): Number of times to spawn wait_random
+        max_delay (int): Maximum possible delay for each wait_random call
+
+    Returns:
+        list[float]: List of delays, sorted without using sort()
+    """
+    # Create and wait for all tasks
+    delays = await asyncio.gather(*[wait_random(max_delay) for _ in range(n)])
+
+    # Sort using list comprehension
+    return sorted(delays)
