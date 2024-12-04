@@ -15,4 +15,4 @@ def concat(str1: str, str2: str) -> str:
     Returns:
         str: The concatenated result of the two strings.
     """
-    return str1 + str
+    return str1 + str2
