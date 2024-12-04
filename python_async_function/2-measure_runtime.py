@@ -9,10 +9,11 @@ concurrent_coroutines = importlib.import_module('1-concurrent_coroutines')
 # Utilisation de la fonction wait_n depuis le module importé
 wait_n = concurrent_coroutines.wait_n
 
+
 def measure_time(n: int, max_delay: int) -> float:
     """
-    Mesure le temps total d'exécution de wait_n(n, max_delay) et retourne le temps moyen
-    par exécution.
+    Mesure le temps total d'exécution de wait_n(n, max_delay)
+    et retourne le temps moyen par exécution.
 
     Arguments :
         n (int) : Le nombre de fois où wait_n doit être appelé.
