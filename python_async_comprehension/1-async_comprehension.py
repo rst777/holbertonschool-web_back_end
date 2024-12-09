@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+Async Comprehension Module
+
+This module demonstrates the use of async comprehensions to collect
+random numbers generated asynchronously.
+"""
+
 import asyncio
 from typing import List
 

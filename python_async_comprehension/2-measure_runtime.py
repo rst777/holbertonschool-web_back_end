@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 
+"""
+Runtime Measurement Module
+
+This module provides a function to measure the runtime of parallel
+execution of async comprehensions.
+"""
+
+
 import asyncio
 import time
 from typing import List

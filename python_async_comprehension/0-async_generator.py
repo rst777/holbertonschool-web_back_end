@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+"""
+Asynchronous Generator Module
+
+This module provides an asynchronous generator that yields random float numbers
+
+Functions:
+    - async_generator(): Generates 10 random float numbers asynchronously
+"""
+
 import asyncio
 import random
 from typing import Generator
