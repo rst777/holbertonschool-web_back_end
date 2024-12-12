@@ -27,6 +27,4 @@ def get_nginx_stats():
     status_checks = collection.count_documents({"method": "GET", "path": "/status"})
     print(f"{status_checks} status check")
 
-if __name__ == "__main__":
-    get_nginx_stats()
 
