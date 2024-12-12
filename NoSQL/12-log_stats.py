@@ -13,12 +13,13 @@ def get_nginx_stats():
     total_logs = collection.count_documents({})
     print(f"{total_logs} logs")
 
-    # Methods header
-    print("Methods:")
 
     # Count of each method
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    # Methods header
+    print("Methods:")
     for method in methods:
+
         count = collection.count_documents({"method": method})
         print(f"\tmethod {method}: {count}")
 
